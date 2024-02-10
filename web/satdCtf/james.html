@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James 'albinowax' Kettle - Research Portfolio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        nav {
+            background-color: #007bff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+        }
+
+        header img {
+            border-radius: 50%;
+            max-width: 150px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        section {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            height: calc(100% - 212px); /* Adjusted height for content and footer */
+            overflow-y: auto;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .social-icons a {
+            margin-right: 10px;
+            color: #007bff;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a onclick="loadProfile()">Profile</a>
+        <a onclick="loadContactForm()">Contact Information</a>
+        <a onclick="loadUpcomingPresentations()">Upcoming Presentations</a>
+        <a onclick="loadResearchPortfolio()">Research Portfolio</a>
+        <a onclick="loadToolsAndAutomation()">Tools & Automation</a>
+        <a onclick="loadOtherHighlights()">Other Highlights</a>
+        <a onclick="loadApproachResearch()">How I Approach Research</a>
+    </nav>
+
+    <header>
+        <img src="https://pbs.twimg.com/profile_images/1009103047027503105/nY8sXdsp_400x400.jpg" alt="James Kettle">
+        <h1>James 'albinowax' Kettle</h1>
+        <p>Director of Research at PortSwigger</p>
+    </header>
+
+    <section id="content">
+        <div id="contact-info">
+            <h2>Contact Information</h2>
+            <p>Email: <a href='mailto:xawonibla@gmail.com'>xawonibla@gmail.com</a> or <a href='mailto:elttek.semaj@portswigger.net'>elttek.semaj@portswigger.net</a></p>
+            <p>Social: <span class='social-icons'><a href='#' target='_blank'>Twitter</a><a href='#' target='_blank'>Bluesky</a><a href='#' target='_blank'>Mastodon</a><a href='#' target='_blank'>LinkedIn</a><a href='#' target='_blank'>PortSwigger</a></span></p>
+                <!-- Response message container -->
+                <div id="contact-response-message"></div>
+            </div>
+        </div>
+
+    </section>
+ 
+            <!-- Response message container -->
+            <div id="contact-response-message"></div>
+        </div>
+    <footer>
+        <p>Thank you for visiting James 'albinowax' Kettle's Research Portfolio!</p>
+        <p>Follow me on <a href="#" target="_blank">Twitter</a>, <a href="#" target="_blank">LinkedIn</a>, and <a href="#" target="_blank">Mastodon</a></p>
+    </footer>
+
+    <script>
+        const baseUrl = window.location.origin;
+        function loadProfile() {
+        const profileUrl = `${baseUrl}/profile/5`;
+        fetch(profileUrl)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("content").innerHTML = `
+                <h2>Profile</h2>
+                <pre>
+                    <strong>Name:</strong> ${data.name}
+                    <strong>Age:</strong> ${data.age}
+                    <strong>Credit Card Number:</strong> ${data.CreditCardNumber}
+                </pre>`;
+                })
+                .catch(error => {
+                    console.error('Error fetching profile:', error);
+                    document.getElementById("content").innerHTML = "<h2>Profile</h2><p>Error fetching profile. Please try again later.</p>";
+                });
+
+
+        }
+        
+        function submitContactForm() {
+            const form = document.getElementById("contactForm");
+            const responseMessage = document.getElementById("contact-response-message");
+            const formData = new FormData(form);
+
+            // Mocking a fetch request (replace with actual fetch to your server)
+            fetch('/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                showResponseMessage(true, data.message, responseMessage);
+            })
+            .catch(error => {
+                console.error('Error submitting contact form:', error);
+                showResponseMessage(false, 'An error occurred while submitting the form. Please try again later.', responseMessage);
+            });
+        }
+
+    function showResponseMessage(success, message, container) {
+            document.getElementById("content").innerHTML = `<p>${message}</p>`;
+            container.style.display = 'block';
+        }   
+        
+
+            // Your logic to submit the contact form goes here
+    
+        function loadContactForm() {
+            document.getElementById("content").innerHTML = `<style>
+                #contactForm {
+                    max-width: 400px;
+                    margin: 0 auto;
+                }
+
+                #contactForm label {
+                    display: block;
+                    margin-bottom: 8px;
+                    font-weight: bold;
+                }
+
+                #contactForm input,
+                #contactForm textarea {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 16px;
+                    box-sizing: border-box;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 16px;
+                }
+
+                #contactForm button {
+                    background-color: #007bff;
+                    color: #fff;
+                    padding: 12px 20px;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                #contactForm button:hover {
+                    background-color: #0056b3;
+                }
+
+                #contact-response-message {
+                    margin-top: 20px;
+                    padding: 10px;
+                    border-radius: 4px;
+                    display: none;
+                    font-size: 16px;
+                }
+
+                /* Styles for different response types */
+                #contact-response-message.success {
+                    background-color: #d4edda;
+                    border-color: #c3e6cb;
+                    color: #155724;
+                }
+
+                #contact-response-message.error {
+                    background-color: #f8d7da;
+                    border-color: #f5c6cb;
+                    color: #721c24;
+                }
+            </style>
+
+            <h2>Contact Form</h2>
+            <form id="contactForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="button" onclick="submitContactForm()">Send Message</button>
+            </form>
+            <div id="contact-response-message"></div>
+`
+        }
+        function loadUpcomingPresentations() {
+            document.getElementById("content").innerHTML = "<h2>Upcoming Presentations</h2><p>None right now, exploring some ideas for BHUSA/DEFCON 2024.</p><p>Latest published talk: <a href='#'>Smashing the state machine: the true potential of web race conditions (recording)</a></p>";
+        }
+
+        function loadResearchPortfolio() {
+            document.getElementById("content").innerHTML = "<h2>Research Portfolio</h2><ul><li>HTTP Request Smuggling</li><li>HTTP Desync Attacks: Request Smuggling Reborn <a href='#'>(recording)</a></li><!-- Add more research items --></ul>";
+        }
+
+        function loadToolsAndAutomation() {
+            document.getElementById("content").innerHTML = "<h2>Tools & Automation</h2><ul><li>Backslash Powered Scanner: Automating Human Intuition <a href='#'>(recording)</a></li><!-- Add more tools and automation items --></ul>";
+        }
+
+        function loadOtherHighlights() {
+            document.getElementById("content").innerHTML = "<h2>Other Highlights</h2><ul><li>Smashing the state machine: the true potential of web race conditions <a href='#'>(recording)</a></li><!-- Add more highlights --></ul>";
+        }
+
+        function loadApproachResearch() {
+            document.getElementById("content").innerHTML = "<h2>How I Approach Research</h2><p>Keynote: <a href='#'>Hunting Evasive Vulnerabilities - Finding Flaws that Others Miss</a></p><p>Article: <a href='#'>So you want to become a web security researcher</a></p>";
+        }
+    </script>
+</body>
+
+</html>

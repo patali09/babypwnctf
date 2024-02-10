@@ -1,0 +1,18 @@
+i-CES{B451C_ENC0D1NG_CH4LL3NGE}
+
+
+Decode the following and generate the flag
+
+aS1DRVM=
+
+
+0x7b42343531435f
+
+
+01000101 01001110 01000011 00110000 01000100 00110001 01001110 01000111 01011111
+
+
+
+4nF1kXTjPw38MA
+
+Concatinate all the output and you will get flag

@@ -1,0 +1,1 @@
+ssh -i techparva4_key.pem techparva4@20.193.159.221

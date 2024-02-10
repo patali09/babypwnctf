@@ -1,0 +1,6 @@
+tshark -r '/tmp/composite.pcapng'  -Y 'usbhid.data' -T fields -e usbhid.data   
+
+
+i-CES{p4Ck375_AR3_K3Y_STR0KES}
+
+case insensitive

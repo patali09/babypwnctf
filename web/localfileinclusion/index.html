@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winks Perfume</title>
+    <link rel="stylesheet" href="/static/?page=styles.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="logo">Winks Perfume</div>
+                <ul class="menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1>Welcome to Winks Perfume</h1>
+            <p>Discover your signature scent with our exclusive collection</p>
+            <a href="#products" class="btn">Explore Our Products</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Indulge in the art of perfumery with Winks Perfume. Our scents are crafted to evoke emotions and memories, offering a sensory journey unlike any other. From elegant florals to captivating orientals, our collection caters to every individual's unique preferences. Each fragrance tells a story, allowing you to express your personality and make a lasting impression.</p>
+            <a href="#contact" class="btn">Contact Us</a>
+        </div>
+    </section>
+
+
+    <section id="products">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div id="productList" class="product-list">
+                <!-- Product items will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <p>For inquiries and orders, please fill out the form below:</p>
+            <form id="contactForm">
+                <input type="text" name="name" id="name" placeholder="Your Name">
+                <input type="email" name="email" id="email" placeholder="Your Email">
+                <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+            <div id="responseMessage"></div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Winks Perfume</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Sample product data for testing
+        const sampleProducts = [
+            {
+                name: 'WinkFumes Perfume',
+                description: 'Royal warm solid perfume',
+                image: 'product1.png',
+                price: '$500.00',
+                review: '★★★★☆', // Five-star rating system
+                detailsLink: 'product1-details.html' // Replace with actual link
+            },
+            {
+                name: 'WinkFumes Perfume ',
+                description: 'Solid Pefume Makes you beautiful in every possible way',
+                image: 'product2.png',
+                price: '$600.00',
+                review: '★★★★★',
+                detailsLink: 'product2-details.html' // Replace with actual link
+            },
+            // Add more products as needed
+        ];
+
+        // Fetch product data from an API or JSON file
+        const productList = document.getElementById('productList');
+        sampleProducts.forEach(product => {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product');
+            productItem.innerHTML = `
+                <img src="/images/${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>${product.description}</p>
+                <p><strong>Price:</strong> ${product.price}</p>
+                <p><strong>Review:</strong> ${product.review}</p>
+                <a href="#" class="btn">View Details</a>
+            `;
+            productList.appendChild(productItem);
+        });
+
+
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Get form data
+    const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value
+    };
+
+    // Simulate sending message (replace with actual AJAX request)
+
+        displayMessage('responseMessage', 'Message sent successfully', 'success');
+    
+});
+
+function displayMessage(elementId, message, messageType) {
+    const element = document.getElementById(elementId);
+    element.innerText = message;
+    element.className = messageType;
+    element.style.display = 'block';
+
+    // Hide message after 3 seconds
+    setTimeout(function() {
+        element.style.display = 'none';
+    }, 3000);
+}
+
+    </script>
+</body>
+</html>
